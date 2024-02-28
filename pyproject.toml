@@ -1,0 +1,24 @@
+[project]
+name = "algorithmic"
+version = "0.1.0"
+authors = [
+  { name="Tomás Juan Link", email="tomaslink@gmail.com" },
+]
+description = """
+    Collection of documented, well tested, clean and efficient 
+    pure python algorithm implementations to solve computational problems."""
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/tomaslink/algorithmic"
+Issues = "https://github.com/tomaslink/algorithmic/issues"

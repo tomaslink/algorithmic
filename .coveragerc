@@ -1,0 +1,5 @@
+[run]
+	branch = True
+
+omit =
+	algorithmic/version.py
