@@ -22,3 +22,9 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/tomaslink/algorithmic"
 Issues = "https://github.com/tomaslink/algorithmic/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
