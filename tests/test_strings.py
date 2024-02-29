@@ -64,7 +64,7 @@ def test_one_away():
     assert strings.one_away("pale", "ple")
     assert strings.one_away("pales", "pale")
     assert strings.one_away("pale", "bale")
-    # assert not strings.one_away("pale", "bake")
+    assert not strings.one_away("pale", "bake")
     assert not strings.one_away("pale", "paleontology")
     assert not strings.one_away("pales", "pcle")
     assert strings.one_away("pale", "pales")

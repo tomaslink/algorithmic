@@ -135,6 +135,7 @@ def palindrome_permutation(string: str) -> bool:
         at the most 1 character has an odd count of occurrences
         (the one in the middle for an odd string).
 
+    Complexity:
     - Time: O(N).
     - Space: O(N).
     """
@@ -173,10 +174,7 @@ def one_away(s1: str, s2: str) -> bool:
     """
 
     def one_insert_away(s1, s2):
-        not_in_s2 = []
-        for char in s1:
-            if char not in s2:
-                not_in_s2.append(char)
+        not_in_s2 = [char for char in s1 if char not in s2]
 
         if len(not_in_s2) == 1:
             s1_copy = s1.replace(not_in_s2[0], "")
@@ -192,6 +190,9 @@ def one_away(s1: str, s2: str) -> bool:
 
         return not diffs > 1
 
+    def one_remove_away(s1, s2):
+        return one_insert_away(s2, s1)  # swap strings, so insert becomes remove.
+
     if len(s1) == len(s2):
         return one_replace_away(s1, s2)
 
@@ -199,6 +200,6 @@ def one_away(s1: str, s2: str) -> bool:
         return one_insert_away(s1, s2)
 
     if len(s2) == len(s1) + 1:
-        return one_insert_away(s2, s1)  # swap strings.
+        return one_remove_away(s1, s2)
 
     return False
