@@ -7,16 +7,14 @@ ASCII_EMPTY_SPACE = 32
 
 
 def unique(string: str) -> bool:
-    """Determines whether an ASCII string has all unique characters.
+    """Checks if an ASCII string has all unique characters.
 
+    Complexity:
     - Time: O(N).
     - Space: O(1)
 
     Where N is the length of the string.
     Since we have a fixed maximum for N, we could also think the time complexity as O(1).
-
-    Args:
-        string: the string to be tested.
 
     Notes:
 
@@ -44,10 +42,11 @@ def unique(string: str) -> bool:
 
 
 def check_permutation(s1: str, s2: str) -> bool:
-    """Given two ASCII strings, determines whether one is a permutation of the other.
+    """Given two ASCII strings, checks if one is a permutation of the other.
 
     The algorithm is case-sensitive.
 
+    Complexity:
     - Time: O(N * log(N)).
     - Space: O(N).
 
@@ -73,6 +72,7 @@ def urlify(string: bytearray, true_length: int) -> None:
     The replacement is done in-place and the algorithm assumes
         that the string has sufficient space at the end to hold the additional characters.
 
+    Complexity:
     - Time: O(N).
     - Space: O(M).
 
@@ -105,9 +105,9 @@ def urlify(string: bytearray, true_length: int) -> None:
 
 
 def permutations(string: str) -> Generator[str, None, None]:
-    """Returns a generator with all permutations of a string.
+    """Generates all possible permutations of a string.
 
-    Exercising the full generator will produce:
+    Complexity (exercising the full generator):
     - Time: O(N!).
     - Space: O(N!).
 
@@ -126,14 +126,14 @@ def permutations(string: str) -> Generator[str, None, None]:
 
 
 def palindrome_permutation(string: str) -> bool:
-    """Determines if a string is a palindrome permutation.
+    """Checks if a string is a palindrome permutation.
 
     In here, a palindrome is a word or phrase that,
         removed its spaces and all lowercase, is the same forward than backwards.
 
     This algorithms exploits the fact that if a string is a palindrome,
         at the most 1 character has an odd count of occurrences
-        (the one in the middle for an odd string)
+        (the one in the middle for an odd string).
 
     - Time: O(N).
     - Space: O(N).
@@ -144,8 +144,8 @@ def palindrome_permutation(string: str) -> bool:
 
     occurrences = {word: 0 for word in set(string)}
 
-    for word in string:
-        occurrences[word] += 1
+    for char in string:
+        occurrences[char] += 1
 
     odd_counts = 0
     for count in occurrences.values():
@@ -155,8 +155,50 @@ def palindrome_permutation(string: str) -> bool:
 
 
 def is_palindrome(string: str) -> bool:
-    """Determines whether a string is a palindrome."""
+    """Checks if a string is a palindrome."""
     string = string.replace(" ", "")
     string = string.lower()
 
     return string == string[::-1]
+
+
+def one_away(s1: str, s2: str) -> bool:
+    """Given two ASCII strings s1 and s2, checks if s2 is one or zero modifications away from s1.
+    The possible modifications of a string are insert a character,
+        remove a character and replace a character.
+
+    Complexity:
+    - Time: O(N).
+    - Space: O(N).
+    """
+
+    def one_insert_away(s1, s2):
+        not_in_s2 = []
+        for char in s1:
+            if char not in s2:
+                not_in_s2.append(char)
+
+        if len(not_in_s2) == 1:
+            s1_copy = s1.replace(not_in_s2[0], "")
+            return s1_copy == s2
+
+        return False
+
+    def one_replace_away(s1, s2):
+        diffs = 0
+        for i, char in enumerate(s1):
+            if char != s2[i]:
+                diffs += 1
+
+        return not diffs > 1
+
+    if len(s1) == len(s2):
+        return one_replace_away(s1, s2)
+
+    if len(s2) == len(s1) - 1:
+        return one_insert_away(s1, s2)
+
+    if len(s2) == len(s1) + 1:
+        return one_insert_away(s2, s1)  # swap strings.
+
+    return False

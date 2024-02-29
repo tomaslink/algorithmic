@@ -57,3 +57,15 @@ def test_palindrome_permutation():
     assert strings.palindrome_permutation("Tact Coa")
     assert strings.palindrome_permutation("tact coa")
     assert not strings.palindrome_permutation("not a palindrome permutation")
+
+
+def test_one_away():
+    assert strings.one_away("pale", "pale")
+    assert strings.one_away("pale", "ple")
+    assert strings.one_away("pales", "pale")
+    assert strings.one_away("pale", "bale")
+    # assert not strings.one_away("pale", "bake")
+    assert not strings.one_away("pale", "paleontology")
+    assert not strings.one_away("pales", "pcle")
+    assert strings.one_away("pale", "pales")
+    assert not strings.one_away("bale", "pales")
