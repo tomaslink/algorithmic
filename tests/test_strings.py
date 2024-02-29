@@ -5,9 +5,12 @@ import itertools
 from algorithmic import strings
 
 
+ENCODE_TYPE = 'ascii'
+
+
 def test_unique():
-    assert strings.unique("asdf")
-    assert not strings.unique("aafd")
+    assert strings.unique("ASDF")
+    assert not strings.unique("AAFD")
 
     s = ''.join(random.choices(string.ascii_uppercase + string.digits, k=200))
 
@@ -15,21 +18,21 @@ def test_unique():
 
 
 def test_check_permutation():
-    assert strings.check_permutation("abc", "cba")
-    assert not strings.check_permutation("abc", "cBa")
-    assert not strings.check_permutation("abcf", "cbad")
-    assert not strings.check_permutation("abcf", "cbads")
+    assert strings.check_permutation("ABC", "CBA")
+    assert not strings.check_permutation("ABC", "cBa")
+    assert not strings.check_permutation("ABCD", "CBAA")
+    assert not strings.check_permutation("ABCD", "ABCDF")
 
 
 def test_urlify():
-    _input = bytearray('This is a test      '.encode('ascii'))
-    _output = bytearray('This%20is%20a%20test'.encode('ascii'))
+    _input = bytearray('This is a test      '.encode(ENCODE_TYPE))
+    _output = bytearray('This%20is%20a%20test'.encode(ENCODE_TYPE))
     true_length = 14
 
     strings.urlify(_input, true_length)
     assert _input == _output
 
-    _input = bytearray('Nospaces'.encode('ascii'))
+    _input = bytearray('NOSPACES'.encode(ENCODE_TYPE))
     _output = _input.copy()
 
     strings.urlify(_input, 8)
@@ -42,3 +45,15 @@ def test_permutations():
 
     result = [''.join(p) for p in itertools.permutations('ABC')]
     assert list(strings.permutations('ABC')) == result
+
+
+def test_is_palindrome():
+    assert strings.is_palindrome("taco cat")
+    assert strings.is_palindrome("Taco Cat")
+    assert not strings.is_palindrome("not a palindrome")
+
+
+def test_palindrome_permutation():
+    assert strings.palindrome_permutation("Tact Coa")
+    assert strings.palindrome_permutation("tact coa")
+    assert not strings.palindrome_permutation("not a palindrome permutation")
