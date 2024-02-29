@@ -1,5 +1,6 @@
 import random
 import string
+import itertools
 
 from algorithmic import strings
 
@@ -33,3 +34,11 @@ def test_urlify():
 
     strings.urlify(_input, 8)
     assert _input == _output
+
+
+def test_permutations():
+    assert list(strings.permutations('AB')) == ['AB', 'BA']
+    assert list(strings.permutations('A')) == ['A']
+
+    result = [''.join(p) for p in itertools.permutations('ABC')]
+    assert list(strings.permutations('ABC')) == result
