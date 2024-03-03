@@ -3,6 +3,7 @@
 <p align="center">
   <a>
     <img alt="Coverage" src="https://codecov.io/gh/tomaslink/algorithmic/graph/badge.svg?token=U8IXA9B0VD">
+    <img alt="Python" src="https://img.shields.io/badge/python-3.8 | 3.9 | 3.10 | 3.11 | 3.12 -blue.svg">
   </a>
 </p>
 
