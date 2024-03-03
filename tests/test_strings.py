@@ -74,3 +74,4 @@ def test_one_away():
 def test_compression():
     assert strings.compression("AABCCCCCAAA") == "A2B1C5A3"
     assert strings.compression("ABBACCC") == "A1B2A1C3"
+    assert strings.compression("AA") == "AA"
