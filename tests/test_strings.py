@@ -75,3 +75,11 @@ def test_compression():
     assert strings.compression("AABCCCCCAAA") == "A2B1C5A3"
     assert strings.compression("ABBACCC") == "A1B2A1C3"
     assert strings.compression("AA") == "AA"
+
+
+def test_rotation():
+    assert strings.rotation("waterbottle", "erbottlewat")
+    assert not strings.rotation("waterbottle", "notarotation")
+
+    assert not strings.rotation("waterbottle", "w")
+    assert not strings.rotation("", "")

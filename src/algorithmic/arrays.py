@@ -6,7 +6,7 @@ def rotate_matrix(matrix: List[List]) -> None:
 
     Complexity:
     - Time: O(N^2)
-    - Space: O(N^2)
+    - Space: O(1)
     """
     if len(matrix) != len(matrix[0]):
         raise ValueError("Input matrix must be square.")

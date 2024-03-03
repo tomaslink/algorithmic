@@ -227,3 +227,20 @@ def compression(string: str) -> str:
         return string
 
     return compressed
+
+
+def rotation(s1: str, s2: str) -> str:
+    """Checks if string s2 is a rotation of string s1, e.g.,
+        "erbottlewat" is a rotation of "waterbottle".
+
+    Complexity:
+    - Time: O(A + B)
+    - Space: O(A + B)
+
+    Where A, B are the lengths of s1 and s2, respectively,
+        assuming sub-string check has O(A + B) time.
+    """
+    if len(s1) != len(s2) or len(s1) == 0:
+        return False
+
+    return s1 in ''.join([s2, s2])
