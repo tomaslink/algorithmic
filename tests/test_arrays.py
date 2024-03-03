@@ -25,17 +25,21 @@ def test_rotate_matrix():
 
 def test_zero_matrix():
     matrix = [[1, 2], [3, 4]]
-    arrays.zero_matrix(matrix)
+    arrays.set_zeros(matrix)
     assert matrix == [[1, 2], [3, 4]]
 
     matrix = [[1, 0], [3, 4]]
-    arrays.zero_matrix(matrix)
+    arrays.set_zeros(matrix)
     assert matrix == [[0, 0], [3, 0]]
 
     matrix = [[1, 2, 3], [4, 0, 6], [7, 8, 9]]
-    arrays.zero_matrix(matrix)
+    arrays.set_zeros(matrix)
     assert matrix == [[1, 0, 3], [0, 0, 0], [7, 0, 9]]
 
     matrix = [[1, 0, 0], [4, 5, 6], [7, 8, 9]]
-    arrays.zero_matrix(matrix)
+    arrays.set_zeros(matrix)
     assert matrix == [[0, 0, 0], [4, 0, 0], [7, 0, 0]]
+
+    matrix = [[1, 0, 3], [0, 5, 6], [7, 8, 9]]
+    arrays.set_zeros(matrix)
+    assert matrix == [[0, 0, 0], [0, 0, 0], [0, 0, 9]]
