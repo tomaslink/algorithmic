@@ -69,3 +69,8 @@ def test_one_away():
     assert not strings.one_away("pales", "pcle")
     assert strings.one_away("pale", "pales")
     assert not strings.one_away("bale", "pales")
+
+
+def test_compression():
+    assert strings.compression("AABCCCCCAAA") == "A2B1C5A3"
+    assert strings.compression("ABBACCC") == "A1B2A1C3"

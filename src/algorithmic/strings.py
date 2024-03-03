@@ -143,7 +143,7 @@ def palindrome_permutation(string: str) -> bool:
     string = string.replace(" ", "")
     string = string.lower()
 
-    occurrences = {word: 0 for word in set(string)}
+    occurrences = {k: 0 for k in set(string)}
 
     for char in string:
         occurrences[char] += 1
@@ -203,3 +203,27 @@ def one_away(s1: str, s2: str) -> bool:
         return one_remove_away(s1, s2)
 
     return False
+
+
+def compression(string: str) -> str:
+    """Performs compression of a string by counting repeated characters."""
+
+    current_char = string[0]
+    count = 1
+
+    compressed = ""
+
+    for char in string[1:]:
+        if char == current_char:
+            count += 1
+        else:
+            compressed += f"{current_char}{count}"
+            current_char = char
+            count = 1
+
+    compressed += f"{current_char}{count}"
+
+    if len(string) == len(compressed):
+        return string
+
+    return compressed
