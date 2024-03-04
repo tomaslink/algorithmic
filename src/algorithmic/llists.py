@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import List, Any, Tuple
 
 
 class Node:
@@ -88,3 +88,63 @@ def remove_duplicates(llist: LinkedList) -> None:
 
         data.add(node.data)
         prev = node
+
+
+def kth_to_last(llist: LinkedList, k: int, size: int = None) -> Node:
+    """Returns the kth element, counting from the last.
+
+    Time Complexity:
+    - Time: O(N)
+    - Space: O(1)
+
+    """
+    if size is not None:
+        k = size - k
+
+        i = 0
+        k_node = None
+        for node in llist:
+            if i == k:
+                k_node = node
+            i += 1
+
+        if k_node is None:
+            raise ValueError("size parameter was greater than real size of linked list.")
+
+        return k_node
+
+    p1 = llist.head
+    p2 = llist.head
+
+    i = 0
+    while i < k:
+        p1 = p1.next
+        if p1 is None:
+            raise ValueError("k parameter was greater than the size of the linked list")
+
+        i += 1
+
+    while p1 is not None:
+        p1 = p1.next
+        p2 = p2.next
+
+    return p2
+
+
+def kth_to_last_recursive(head: Node, k: int) -> Tuple[Node, int]:
+    """Returns the kth element, counting from the last, with a recursive approach.
+
+    Time Complexity:
+    - Time: O(N)
+    - Space: O(N)
+    """
+    if head is None:
+        return head, 0
+
+    node, i = kth_to_last_recursive(head.next, k)
+
+    i += 1
+    if i == k:
+        return head, i
+
+    return node, i
