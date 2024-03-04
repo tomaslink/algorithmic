@@ -21,7 +21,17 @@ The goal is for these implementations to be:
 - Well tested.
 - Well documented.
 
-Design principles taken into account (from the [Zen of Python]):
+## List of problems
+   - [Arrays and Strings]
+   - [Linked Lists]
+
+**References**:
+- The book [Cracking the Coding Interview, 6th Edition].
+
+
+## Design principles
+
+Some design principles taken into account (from the [Zen of Python]):
   - Beautiful is better than ugly.
   - Explicit is better than implicit.
   - Simple is better than complex.
@@ -34,10 +44,3 @@ Design principles taken into account (from the [Zen of Python]):
   - There should be one-- and preferably only one --obvious way to do it.
   - If the implementation is hard to explain, it's a bad idea.
   - If the implementation is easy to explain, it may be a good idea.
-
-## List of problems
-   - [Arrays and Strings]
-   - [Linked Lists]
-
-**References**:
-- The book [Cracking the Coding Interview, 6th Edition].
