@@ -59,3 +59,17 @@ def test_kth_to_last_recursive():
     ktolast, i = llists.kth_to_last_recursive(llist.head, k=3)
     assert i == len(items)
     assert ktolast.data == "c"
+
+
+def test_delete_node():
+    items = ["a", "b", "c", "d", "e"]
+    llist = llists.LinkedList(items)
+
+    node = llist.get_node("c")
+
+    llists.delete_middle_node(node)
+    assert llist.tolist() == ["a", "b", "d", "e"]
+
+    with pytest.raises(ValueError):
+        node = llist.get_node("e")
+        llists.delete_middle_node(node)

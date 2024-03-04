@@ -64,6 +64,16 @@ class LinkedList:
             tail.next = Node(data=item)
             tail = tail.next
 
+    def get_node(self, data):
+        """Returns the node with provided data. If more than one, first is returned."""
+        node = None
+        for n in self:
+            if n.data == data:
+                node = n
+                break
+
+        return node
+
 
 def remove_duplicates(llist: LinkedList) -> None:
     """Removes duplicates (in-place) from a linked list.
@@ -148,3 +158,17 @@ def kth_to_last_recursive(head: Node, k: int) -> Tuple[Node, int]:
         return head, i
 
     return node, i
+
+
+def delete_middle_node(node: Node):
+    """Deletes a middle node from a linked-list.
+
+    Complexity:
+        - Time: O(1).
+        - Space: (1).
+    """
+    if node.next is None:
+        raise ValueError("node is not a middle one!")
+
+    node.data = node.next.data
+    node.next = node.next.next
