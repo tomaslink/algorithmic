@@ -94,8 +94,8 @@ def kth_to_last(llist: LinkedList, k: int, size: int = None) -> Node:
     """Returns the kth element, counting from the last.
 
     Time Complexity:
-    - Time: O(N)
-    - Space: O(1)
+    - Time: O(N).
+    - Space: O(1).
 
     """
     if size is not None:
@@ -135,8 +135,8 @@ def kth_to_last_recursive(head: Node, k: int) -> Tuple[Node, int]:
     """Returns the kth element, counting from the last, with a recursive approach.
 
     Time Complexity:
-    - Time: O(N)
-    - Space: O(N)
+    - Time: O(N).
+    - Space: O(N).
     """
     if head is None:
         return head, 0

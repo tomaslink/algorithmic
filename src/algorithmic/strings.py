@@ -11,7 +11,7 @@ def unique(string: str) -> bool:
 
     Complexity:
     - Time: O(N).
-    - Space: O(1)
+    - Space: O(1).
 
     Where N is the length of the string.
     Since we have a fixed maximum for N, we could also think the time complexity as O(1).
@@ -234,8 +234,8 @@ def rotation(s1: str, s2: str) -> str:
         "erbottlewat" is a rotation of "waterbottle".
 
     Complexity:
-    - Time: O(A + B)
-    - Space: O(A + B)
+    - Time: O(A + B).
+    - Space: O(A + B).
 
     Where A, B are the lengths of s1 and s2, respectively,
         assuming sub-string check has O(A + B) time.
