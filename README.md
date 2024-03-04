@@ -9,6 +9,9 @@
 
 [Cracking the Coding Interview, 6th Edition]: https://www.amazon.com/gp/product/0984782850/ref=as_li_ss_tl?ie=UTF8&tag=care01-20&linkCode=as2&camp=217145&creative098478285050tiveASIN=0984782850
 
+[Arrays and Strings]: doc/arrays-and-strings.md
+[Linked Lists]: doc/linked-lists.md
+
 Collection of pure python algorithm implementations to solve computational problems.
 
 The goal is for these implementations to be:
@@ -18,7 +21,8 @@ The goal is for these implementations to be:
 - Well documented.
 
 ## List of problems
-   - [Arrays and Strings](doc/arrays-and-strings.md).
+   - [Arrays and Strings]
+   - [Linked Lists]
 
 References:
 - The book [Cracking the Coding Interview, 6th Edition].
