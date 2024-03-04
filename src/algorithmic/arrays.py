@@ -5,8 +5,8 @@ def rotate_matrix(matrix: List[List]) -> None:
     """Rotates a matrix (in-place) 90 degrees clock-wise.
 
     Complexity:
-    - Time: O(N^2)
-    - Space: O(1)
+    - Time: O(N^2).
+    - Space: O(1).
     """
     if len(matrix) != len(matrix[0]):
         raise ValueError("Input matrix must be square.")
@@ -31,8 +31,8 @@ def set_zeros(matrix: List[List]) -> None:
         its entire row and column are set to zero.
 
     Complexity:
-    - Time: O(N^2)
-    - Space: O(1)
+    - Time: O(N^2).
+    - Space: O(1).
     """
 
     def nullify_row(matrix, i):
