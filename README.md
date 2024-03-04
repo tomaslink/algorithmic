@@ -8,6 +8,7 @@
 </p>
 
 [Cracking the Coding Interview, 6th Edition]: https://www.amazon.com/gp/product/0984782850/ref=as_li_ss_tl?ie=UTF8&tag=care01-20&linkCode=as2&camp=217145&creative098478285050tiveASIN=0984782850
+[Zen of Python]: https://peps.python.org/pep-0020/
 
 [Arrays and Strings]: docs/arrays-and-strings.md
 [Linked Lists]: docs/linked-lists.md
@@ -20,9 +21,23 @@ The goal is for these implementations to be:
 - Well tested.
 - Well documented.
 
+Design principles taken into account (from the [Zen of Python]):
+  - Beautiful is better than ugly.
+  - Explicit is better than implicit.
+  - Simple is better than complex.
+  - Complex is better than complicated.
+  - Flat is better than nested.
+  - Sparse is better than dense.
+  - Readability counts.
+  - Errors should never pass silently.
+  - Unless explicitly silenced.
+  - There should be one-- and preferably only one --obvious way to do it.
+  - If the implementation is hard to explain, it's a bad idea.
+  - If the implementation is easy to explain, it may be a good idea.
+
 ## List of problems
    - [Arrays and Strings]
    - [Linked Lists]
 
-References:
+**References**:
 - The book [Cracking the Coding Interview, 6th Edition].
