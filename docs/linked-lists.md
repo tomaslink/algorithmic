@@ -5,6 +5,7 @@
 [Delete Middle Node]: ../src/algorithmic/llists.py#L163
 [Partition]: ../src/algorithmic/llists.py#L177
 [Sum Lists]: ../src/algorithmic/llists.py#L206
+[Palindrome]: ../src/algorithmic/llists.py#L275
 
 
 1. **[Remove duplicates]**: Write code to remove duplicates from an unsorted linked list. 
@@ -36,3 +37,5 @@ function that adds the two numbers and returns the sum as a linked list.
     * **EXAMPLE**:
         - `Input: (7-> 1 -> 6) + (5 -> 9 -> 2). That is, 617 + 295`.
         - `Output: 2 -> 1 -> 9. That is, 912`.
+
+6. **[Palindrome]**: Implement a function to check if a linked list is a palindrome.

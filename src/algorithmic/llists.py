@@ -42,6 +42,29 @@ class LinkedList:
             yield node
             node = node.next
 
+    def __len__(self):
+        i = 0
+        for node in self:
+            i += 1
+
+        return i
+
+    def __eq__(self, other):
+        if not isinstance(other, LinkedList):
+            raise ValueError("A LinkedList can only be compared to another LinkedList.")
+
+        one = self.head
+        two = other.head
+
+        while one is not None and two is not None:
+            if not one.data == two.data:
+                return False
+
+            one = one.next
+            two = two.next
+
+        return one is None and two is None
+
     def tolist(self):
         """Converts linked list to list."""
         node = self.head
@@ -52,6 +75,9 @@ class LinkedList:
             node = node.next
 
         return items
+
+    def tostring(self):
+        return ''.join(map(str, self.tolist()))
 
     def add_last(self, items: List[Any]):
         """Inserts list of items at the end of the linked list."""
@@ -73,6 +99,22 @@ class LinkedList:
                 break
 
         return node
+
+    def reverse(self):
+        """Returns the linked listed reversed."""
+        tail = None
+
+        node = self.head
+        while node is not None:
+            n = Node(data=node.data)
+            n.next = tail
+            tail = n
+            node = node.next
+
+        llist = LinkedList()
+        llist.head = tail
+
+        return llist
 
 
 def remove_duplicates(llist: LinkedList) -> None:
@@ -228,3 +270,59 @@ def sum(l1: LinkedList, l2: LinkedList) -> LinkedList:
     l3_numbers = [int(x) for x in str(l3_int)]
 
     return LinkedList(l3_numbers[::-1])
+
+
+def is_palindrome(llist: LinkedList, method='reverse') -> bool:
+    """Checks if the items in a linked-list form a palindrome.
+
+    Complexity:
+        - Time: O(N).
+        - Space: O(N).
+    """
+    METHODS = ['iterative', 'reverse', 'recursive']
+
+    if method not in METHODS:
+        raise ValueError("Method {} not valid. Choose from {}".format(method, METHODS))
+
+    if method == 'reverse':
+        return llist == llist.reverse()
+
+    elif method == 'iterative':
+        stack = []
+        p1 = llist.head
+        p2 = llist.head
+
+        while p1 is not None and p1.next is not None:
+            stack.append(p2.data)
+            p1 = p1.next.next
+            p2 = p2.next
+
+        if p1 is not None:  # odd number of elements. Delete middle one.
+            p2 = p2.next
+
+        while p2 is not None:
+            if not p2.data == stack.pop():
+                return False
+
+            p2 = p2.next
+
+        return True
+
+    else:
+        def recursive(head: Node, length: int):
+            if head is None or length <= 0:
+                return head, True
+
+            if length == 1:
+                return head.next, True
+
+            node, is_palindrome = recursive(head.next, length - 2)
+
+            if not is_palindrome or node is None:
+                return node, is_palindrome
+
+            return node.next, head.data == node.data
+
+        _, res = recursive(llist.head, len(llist))
+
+        return res
