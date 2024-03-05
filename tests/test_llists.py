@@ -121,10 +121,22 @@ def test_sum():
 
 
 def test_palindrome():
+    methods = ['reverse', 'iterative']
+
+    with pytest.raises(ValueError):
+        assert llists.is_palindrome("dummy", method='invalid')
+
     items = ["t", "a", "c", "o", "c", "a", "t"]
     llist = llists.LinkedList(items)
-    assert llists.is_palindrome(llist)
+    for method in methods:
+        assert llists.is_palindrome(llist, method=method)
 
     items = ["t", "a", "c", "o", "c", "a"]
     llist = llists.LinkedList(items)
-    assert not llists.is_palindrome(llist)
+    for method in methods:
+        assert not llists.is_palindrome(llist, method=method)
+
+    items = [0, 1, 2, 3, 2, 1, 0]
+    llist = llists.LinkedList(items)
+    for method in methods:
+        assert llists.is_palindrome(llist, method=method)

@@ -265,11 +265,41 @@ def sum(l1: LinkedList, l2: LinkedList) -> LinkedList:
     return LinkedList(l3_numbers[::-1])
 
 
-def is_palindrome(llist: LinkedList) -> bool:
+def is_palindrome(llist: LinkedList, method='reverse') -> bool:
     """Checks if the items in a linked-list form a palindrome.
 
     Complexity:
         - Time: O(N).
         - Space: O(N).
     """
-    return llist == llist.reverse()
+    METHODS = ['iterative', 'reverse']
+
+    if method not in METHODS:
+        raise ValueError("Method {} not valid. Choose from {}".format(method, METHODS))
+
+    if method == 'reverse':
+        return llist == llist.reverse()
+
+    if method == 'iterative':
+        stack = []
+        p1 = llist.head
+        p2 = llist.head
+
+        while p1 is not None and p1.next is not None:
+            stack.append(p2.data)
+            p1 = p1.next.next
+            p2 = p2.next
+
+        if p1 is not None:  # odd number of elements. Delete middle one.
+            p2 = p2.next
+
+        while p2 is not None:
+            if not p2.data == stack.pop():
+                return False
+
+            p2 = p2.next
+
+        return True
+
+    if method == 'recursive':
+        pass
