@@ -160,7 +160,7 @@ def kth_to_last_recursive(head: Node, k: int) -> Tuple[Node, int]:
     return node, i
 
 
-def delete_middle_node(node: Node):
+def delete_middle_node(node: Node) -> None:
     """Deletes a middle node from a linked-list.
 
     Complexity:
@@ -174,7 +174,7 @@ def delete_middle_node(node: Node):
     node.next = node.next.next
 
 
-def partition(llist: LinkedList, x: int):
+def partition(llist: LinkedList, x: int) -> LinkedList:
     """Partition a linked list around value x.
 
     Complexity:
@@ -201,3 +201,30 @@ def partition(llist: LinkedList, x: int):
     llist.head = head
 
     return llist
+
+
+def sum(l1: LinkedList, l2: LinkedList) -> LinkedList:
+    """Sum of two numbers represented by linked lists.
+
+    The algorithm assumes the numbers are represented in reversed order.
+
+    Complexity:
+        Time: O(N).
+        Space: O(N).
+
+    Where N is max(A, B), and A, B the lengths of l1 and l2, respectively.
+
+    Returns:
+        the sum represented as a linked-list.
+    """
+    l1_numbers = l1.tolist()[::-1]
+    l2_numbers = l2.tolist()[::-1]
+
+    l1_int = int(''.join(map(str, l1_numbers)))
+    l2_int = int(''.join(map(str, l2_numbers)))
+
+    l3_int = l1_int + l2_int
+
+    l3_numbers = [int(x) for x in str(l3_int)]
+
+    return LinkedList(l3_numbers[::-1])

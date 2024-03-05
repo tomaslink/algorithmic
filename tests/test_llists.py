@@ -89,3 +89,21 @@ def test_partition():
     llist = llists.partition(llist, x=5)
     output = [2, 4, 3, 6, 5, 10, 9]
     assert llist.tolist() == output
+
+
+def test_sum():
+    items1 = [7]
+    items2 = [5]
+    l1 = llists.LinkedList(items1)
+    l2 = llists.LinkedList(items2)
+    l3 = llists.sum(l1, l2)
+
+    assert l3.tolist()[::-1] == [1, 2]
+
+    items1 = [7, 1, 6]
+    items2 = [5, 9, 2]
+    l1 = llists.LinkedList(items1)
+    l2 = llists.LinkedList(items2)
+    l3 = llists.sum(l1, l2)
+
+    assert l3.tolist()[::-1] == [9, 1, 2]

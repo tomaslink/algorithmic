@@ -4,6 +4,7 @@
 [Return Kth to Last]: ../src/algorithmic/llists.py#L93
 [Delete Middle Node]: ../src/algorithmic/llists.py#L163
 [Partition]: ../src/algorithmic/llists.py#L177
+[Sum Lists]: ../src/algorithmic/llists.py#L206
 
 
 1. **[Remove duplicates]**: Write code to remove duplicates from an unsorted linked list. 
@@ -28,3 +29,10 @@ it does not need to appear between the left and right partitions.
     * **EXAMPLE**:
         - `Input:  3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition= 5]`.
         - `Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8`.
+
+5. **[Sum Lists]**: You have two numbers represented by a linked list, where each node contains a single
+digit. The digits are stored in reverse order, such that the 1's digit is at the head of the list. Write a
+function that adds the two numbers and returns the sum as a linked list.
+    * **EXAMPLE**:
+        - `Input: (7-> 1 -> 6) + (5 -> 9 -> 2). That is, 617 + 295`.
+        - `Output: 2 -> 1 -> 9. That is, 912`.
