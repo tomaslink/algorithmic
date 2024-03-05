@@ -5,6 +5,7 @@
 [Delete Middle Node]: ../src/algorithmic/llists.py#L163
 [Partition]: ../src/algorithmic/llists.py#L177
 [Sum Lists]: ../src/algorithmic/llists.py#L206
+[Palindrome]: ../src/algorithmic/llists.py#L275
 
 
 1. **[Remove duplicates]**: Write code to remove duplicates from an unsorted linked list. 

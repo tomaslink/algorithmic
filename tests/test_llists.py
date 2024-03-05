@@ -13,6 +13,7 @@ def test_linked_list():
     llist = llists.LinkedList(items1)
     assert repr(llist) == "a -> b -> None"
     assert llist.tostring() == "ab"
+    assert len(llist) == 2
 
     llist.add_last(items2)
     assert llist.tolist() == items1 + items2
@@ -121,7 +122,7 @@ def test_sum():
 
 
 def test_palindrome():
-    methods = ['reverse', 'iterative']
+    methods = ['reverse', 'iterative', 'recursive']
 
     with pytest.raises(ValueError):
         assert llists.is_palindrome("dummy", method='invalid')

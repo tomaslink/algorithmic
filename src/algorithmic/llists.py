@@ -42,6 +42,13 @@ class LinkedList:
             yield node
             node = node.next
 
+    def __len__(self):
+        i = 0
+        for node in self:
+            i += 1
+
+        return i
+
     def __eq__(self, other):
         if not isinstance(other, LinkedList):
             raise ValueError("A LinkedList can only be compared to another LinkedList.")
@@ -272,7 +279,7 @@ def is_palindrome(llist: LinkedList, method='reverse') -> bool:
         - Time: O(N).
         - Space: O(N).
     """
-    METHODS = ['iterative', 'reverse']
+    METHODS = ['iterative', 'reverse', 'recursive']
 
     if method not in METHODS:
         raise ValueError("Method {} not valid. Choose from {}".format(method, METHODS))
@@ -280,7 +287,7 @@ def is_palindrome(llist: LinkedList, method='reverse') -> bool:
     if method == 'reverse':
         return llist == llist.reverse()
 
-    if method == 'iterative':
+    elif method == 'iterative':
         stack = []
         p1 = llist.head
         p2 = llist.head
@@ -301,5 +308,21 @@ def is_palindrome(llist: LinkedList, method='reverse') -> bool:
 
         return True
 
-    if method == 'recursive':
-        pass
+    else:
+        def recursive(head: Node, length: int):
+            if head is None or length <= 0:
+                return head, True
+
+            if length == 1:
+                return head.next, True
+
+            node, is_palindrome = recursive(head.next, length - 2)
+
+            if not is_palindrome or node is None:
+                return node, is_palindrome
+
+            return node.next, head.data == node.data
+
+        _, res = recursive(llist.head, len(llist))
+
+        return res
