@@ -156,7 +156,12 @@ def palindrome_permutation(string: str) -> bool:
 
 
 def is_palindrome(string: str) -> bool:
-    """Checks if a string is a palindrome."""
+    """Checks if a string is a palindrome.
+
+    Complexity:
+        Time: O(N).
+        Space: O(N).
+    """
     string = string.replace(" ", "")
     string = string.lower()
 

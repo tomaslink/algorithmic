@@ -12,11 +12,22 @@ def test_linked_list():
 
     llist = llists.LinkedList(items1)
     assert repr(llist) == "a -> b -> None"
+    assert llist.tostring() == "ab"
 
     llist.add_last(items2)
     assert llist.tolist() == items1 + items2
 
     assert repr(llist.head) == "a"
+
+    one = llists.LinkedList(items2)
+    two = llists.LinkedList(items2)
+    assert one == two
+
+    two.add_last(items1)
+    assert not one == two
+
+    with pytest.raises(ValueError):
+        assert one == "string"
 
 
 def test_remove_duplicates():
@@ -107,3 +118,13 @@ def test_sum():
     l3 = llists.sum(l1, l2)
 
     assert l3.tolist()[::-1] == [9, 1, 2]
+
+
+def test_palindrome():
+    items = ["t", "a", "c", "o", "c", "a", "t"]
+    llist = llists.LinkedList(items)
+    assert llists.is_palindrome(llist)
+
+    items = ["t", "a", "c", "o", "c", "a"]
+    llist = llists.LinkedList(items)
+    assert not llists.is_palindrome(llist)

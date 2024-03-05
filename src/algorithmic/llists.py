@@ -42,6 +42,22 @@ class LinkedList:
             yield node
             node = node.next
 
+    def __eq__(self, other):
+        if not isinstance(other, LinkedList):
+            raise ValueError("A LinkedList can only be compared to another LinkedList.")
+
+        one = self.head
+        two = other.head
+
+        while one is not None and two is not None:
+            if not one.data == two.data:
+                return False
+
+            one = one.next
+            two = two.next
+
+        return one is None and two is None
+
     def tolist(self):
         """Converts linked list to list."""
         node = self.head
@@ -52,6 +68,9 @@ class LinkedList:
             node = node.next
 
         return items
+
+    def tostring(self):
+        return ''.join(map(str, self.tolist()))
 
     def add_last(self, items: List[Any]):
         """Inserts list of items at the end of the linked list."""
@@ -73,6 +92,22 @@ class LinkedList:
                 break
 
         return node
+
+    def reverse(self):
+        """Returns the linked listed reversed."""
+        tail = None
+
+        node = self.head
+        while node is not None:
+            n = Node(data=node.data)
+            n.next = tail
+            tail = n
+            node = node.next
+
+        llist = LinkedList()
+        llist.head = tail
+
+        return llist
 
 
 def remove_duplicates(llist: LinkedList) -> None:
@@ -228,3 +263,13 @@ def sum(l1: LinkedList, l2: LinkedList) -> LinkedList:
     l3_numbers = [int(x) for x in str(l3_int)]
 
     return LinkedList(l3_numbers[::-1])
+
+
+def is_palindrome(llist: LinkedList) -> bool:
+    """Checks if the items in a linked-list form a palindrome.
+
+    Complexity:
+        - Time: O(N).
+        - Space: O(N).
+    """
+    return llist == llist.reverse()
