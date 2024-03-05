@@ -4,7 +4,8 @@ from algorithmic import llists
 
 
 def test_linked_list():
-    _ = llists.LinkedList()
+    llist = llists.LinkedList()
+    assert llist.get_node("a") is None
 
     items1 = ["a", "b"]
     items2 = ["c", "d", "e", "e"]
@@ -73,3 +74,18 @@ def test_delete_node():
     with pytest.raises(ValueError):
         node = llist.get_node("e")
         llists.delete_middle_node(node)
+
+
+def test_partition():
+    items = [3, 5, 8, 5, 10, 2, 1]
+    llist = llists.LinkedList(items)
+
+    llist = llists.partition(llist, x=5)
+    output = [1, 2, 3, 5, 8, 5, 10]
+    assert llist.tolist() == output
+
+    items = [6, 5, 3, 4, 10, 2, 9]
+    llist = llists.LinkedList(items)
+    llist = llists.partition(llist, x=5)
+    output = [2, 4, 3, 6, 5, 10, 9]
+    assert llist.tolist() == output
