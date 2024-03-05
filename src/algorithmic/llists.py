@@ -33,7 +33,7 @@ class LinkedList:
         items = self.tolist()
         items.append("None")
 
-        return " -> ".join(items)
+        return " -> ".join([str(i) for i in items])
 
     def __iter__(self):
         node = self.head
@@ -172,3 +172,32 @@ def delete_middle_node(node: Node):
 
     node.data = node.next.data
     node.next = node.next.next
+
+
+def partition(llist: LinkedList, x: int):
+    """Partition a linked list around value x.
+
+    Complexity:
+    - Time: O(N).
+    - Space: O(1).
+    """
+
+    head = llist.head
+    node = head.next
+
+    _prev = head
+    while node is not None:
+        _next = node.next
+
+        if node.data < x:
+            _prev.next = node.next
+            node.next = head
+            head = node
+        else:
+            _prev = node
+
+        node = _next
+
+    llist.head = head
+
+    return llist
