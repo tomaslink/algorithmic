@@ -1,3 +1,4 @@
+import copy
 from typing import List, Any, Tuple
 
 
@@ -27,7 +28,7 @@ class LinkedList:
         if items is not None:
             node = Node(data=items[0])
             self.head = node
-            self.add_last(items[1:])
+            self.add_items(items[1:])
 
     def __repr__(self):
         items = self.tolist()
@@ -43,11 +44,9 @@ class LinkedList:
             node = node.next
 
     def __len__(self):
-        i = 0
-        for node in self:
-            i += 1
+        size, _ = self.size_and_tail()
 
-        return i
+        return size
 
     def __eq__(self, other):
         if not isinstance(other, LinkedList):
@@ -79,7 +78,12 @@ class LinkedList:
     def tostring(self):
         return ''.join(map(str, self.tolist()))
 
-    def add_last(self, items: List[Any]):
+    def add_node(self, node: Node):
+        """Inserts a node at the end of the linked-list."""
+        last_node = self.get_last()
+        last_node.next = node
+
+    def add_items(self, items: List[Any]):
         """Inserts list of items at the end of the linked list."""
         tail = self.head
 
@@ -100,21 +104,53 @@ class LinkedList:
 
         return node
 
+    def get_last(self):
+        """Returns last node."""
+        node = None
+        for n in self:
+            node = n
+
+        return node
+
+    def at(self, idx):
+        """Returns node at index idx."""
+        i = 0
+        for node in self:
+            if i == idx:
+                return node
+
+            i += 1
+
+        raise ValueError("index {} out of bounds for list: {}!".format(idx, self.tolist()))
+
     def reverse(self):
-        """Returns the linked listed reversed."""
-        tail = None
+        """Reverses the linked list in-place.
 
-        node = self.head
-        while node is not None:
-            n = Node(data=node.data)
-            n.next = tail
-            tail = n
-            node = node.next
+        Complexity:
+            - Time: O(N).
+            - Space: O(1)
+        """
+        _prev = None
+        _current = self.head
 
-        llist = LinkedList()
-        llist.head = tail
+        while _current is not None:
+            _next = _current.next
+            _current.next = _prev
+            _prev = _current
+            _current = _next
 
-        return llist
+        self.head = _prev
+
+    def size_and_tail(self):
+        """Returns the size and tail of linked-list."""
+        i = 0
+        node = None
+
+        for n in self:
+            node = n
+            i += 1
+
+        return i, node
 
 
 def remove_duplicates(llist: LinkedList) -> None:
@@ -272,7 +308,7 @@ def sum(l1: LinkedList, l2: LinkedList) -> LinkedList:
     return LinkedList(l3_numbers[::-1])
 
 
-def is_palindrome(llist: LinkedList, method='reverse') -> bool:
+def is_palindrome(llist: LinkedList, method: str = 'reverse') -> bool:
     """Checks if the items in a linked-list form a palindrome.
 
     Complexity:
@@ -285,7 +321,10 @@ def is_palindrome(llist: LinkedList, method='reverse') -> bool:
         raise ValueError("Method {} not valid. Choose from {}".format(method, METHODS))
 
     if method == 'reverse':
-        return llist == llist.reverse()
+        llist_copy = copy.deepcopy(llist)
+        llist.reverse()
+
+        return llist_copy == llist
 
     elif method == 'iterative':
         stack = []
@@ -326,3 +365,36 @@ def is_palindrome(llist: LinkedList, method='reverse') -> bool:
         _, res = recursive(llist.head, len(llist))
 
         return res
+
+
+def intersection(l1: LinkedList, l2: LinkedList):
+    """Finds an intersecting node between l2 and l2 linked-lists."""
+
+    l1_len, l1_tail = l1.size_and_tail()
+    l2_len, l2_tail = l2.size_and_tail()
+
+    if l1_len == 0 or l2_len == 0:
+        return False, None
+
+    if l1_tail is not l2_tail:
+        return False, None
+
+    len_diff = abs(l1_len - l2_len)
+
+    p1 = l1.head
+    p2 = l2.head
+
+    if l1_len > l2_len:
+        p1 = l1.at(len_diff)
+
+    if l2_len > l1_len:
+        p2 = l2.at(len_diff)
+
+    while p1 is not None:
+        if p1 is p2:
+            break
+
+        p1 = p1.next
+        p2 = p2.next
+
+    return True, p1
