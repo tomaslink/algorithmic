@@ -398,3 +398,32 @@ def intersection(l1: LinkedList, l2: LinkedList):
         p2 = p2.next
 
     return True, p1
+
+
+def loop_detection(llist: LinkedList):
+    """Detects a loop in the linked-list and returns the beginning of the loop.
+
+    Complexity:
+        - Time: O(N).
+        - Space: O(1).
+    """
+    slow = llist.head
+    fast = llist.head
+
+    while fast is not None and fast.next is not None:
+        slow = slow.next
+        fast = fast.next.next
+
+        if slow is fast:
+            break  # LOOP_SIZE - k steps.
+
+    if slow is None or fast.next is None:
+        return None
+
+    slow = llist.head
+
+    while slow is not fast:
+        slow = slow.next
+        fast = fast.next
+
+    return slow
