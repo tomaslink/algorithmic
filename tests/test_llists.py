@@ -186,3 +186,23 @@ def test_intersection():
     result, int_node = llists.intersection(l3, l4)
     assert not result
     assert int_node is None
+
+
+def test_loop_detection():
+    items = ["A", "B", "C", "D", "E"]
+    llist = llists.LinkedList(items)
+
+    # No loop.
+    node = llists.loop_detection(llist)
+    assert node is None
+
+    # Loop at C.
+    c_node = llist.get_node("C")
+    llist.add_node(c_node)
+    node = llists.loop_detection(llist)
+    assert node is c_node
+
+    # No Loop, empty list
+    llist = llists.LinkedList()
+    node = llists.loop_detection(llist)
+    assert node is None

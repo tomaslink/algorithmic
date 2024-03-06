@@ -7,6 +7,7 @@
 [Sum Lists]: ../src/algorithmic/llists.py#L206
 [Palindrome]: ../src/algorithmic/llists.py#L275
 [Intersection]: ../src/algorithmic/llists.py#L370
+[Loop Detection]: ../src/algorithmic/llists.py#L403
 
 
 1. **[Remove duplicates]**: Write code to remove duplicates from an unsorted linked list. 
@@ -45,3 +46,9 @@ function that adds the two numbers and returns the sum as a linked list.
 intersecting node. Note that the intersection is defined based on reference, not value. That is, if the
 kth node of the first linked list is the exact same node (by reference) as the jth node of the second
 linked list, then they are intersecting.
+
+8. **[Loop Detection]**: Given a circular linked list, implement an algorithm that returns the node at the
+beginning of the loop. A circular linked list is a corrupt linked list in which a node's next pointer points to an earlier node, so as to make a loop in the linked list.
+    * EXAMPLE
+        - `Input: A -> B -> C -> D -> E -> C [the same C as earlier]`.
+        - `Output: C`.
