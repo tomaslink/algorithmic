@@ -15,7 +15,10 @@ def test_linked_list():
     assert llist.tostring() == "ab"
     assert len(llist) == 2
 
-    llist.add_last(items2)
+    with pytest.raises(ValueError):
+        llist.at(10)
+
+    llist.add_items(items2)
     assert llist.tolist() == items1 + items2
 
     assert repr(llist.head) == "a"
@@ -24,11 +27,16 @@ def test_linked_list():
     two = llists.LinkedList(items2)
     assert one == two
 
-    two.add_last(items1)
+    two.add_items(items1)
     assert not one == two
 
     with pytest.raises(ValueError):
         assert one == "string"
+
+    items = ["a", "b"]
+    llist = llists.LinkedList(items)
+    llist.reverse()
+    assert llist.tolist() == items[::-1]
 
 
 def test_remove_duplicates():
@@ -141,3 +149,40 @@ def test_palindrome():
     llist = llists.LinkedList(items)
     for method in methods:
         assert llists.is_palindrome(llist, method=method)
+
+
+def test_intersection():
+    items = ["p", "a", "l", "i", "n", "d"]
+    l1 = llists.LinkedList(items)
+    node = l1.get_node("i")
+
+    # intersection, different length
+    l2 = llists.LinkedList()
+    l2.head = node
+    result, int_node = llists.intersection(l1, l2)  # l1 > l2
+    assert result
+    assert int_node is node
+
+    result, int_node = llists.intersection(l2, l1)  # l1 > l2
+    assert result
+    assert int_node is node
+
+    # no intersection
+    l2 = llists.LinkedList(["r", "o", "m", "e"])
+    result, int_node = llists.intersection(l1, l2)
+    assert not result
+    assert int_node is None
+
+    # intersection, same length
+    node = l2.get_node("e")
+    l3 = llists.LinkedList(["z", "w", "x"])
+    l3.add_node(node)
+    result, int_node = llists.intersection(l2, l3)
+    assert result
+    assert int_node is node
+
+    # no intersection, empty list
+    l4 = llists.LinkedList()
+    result, int_node = llists.intersection(l3, l4)
+    assert not result
+    assert int_node is None

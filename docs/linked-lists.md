@@ -6,6 +6,7 @@
 [Partition]: ../src/algorithmic/llists.py#L177
 [Sum Lists]: ../src/algorithmic/llists.py#L206
 [Palindrome]: ../src/algorithmic/llists.py#L275
+[Intersection]: ../src/algorithmic/llists.py#L370
 
 
 1. **[Remove duplicates]**: Write code to remove duplicates from an unsorted linked list. 
@@ -39,3 +40,8 @@ function that adds the two numbers and returns the sum as a linked list.
         - `Output: 2 -> 1 -> 9. That is, 912`.
 
 6. **[Palindrome]**: Implement a function to check if a linked list is a palindrome.
+
+7. **[Intersection]**: Given two (singly) linked lists, determine if the two lists intersect. Return the
+intersecting node. Note that the intersection is defined based on reference, not value. That is, if the
+kth node of the first linked list is the exact same node (by reference) as the jth node of the second
+linked list, then they are intersecting.
