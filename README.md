@@ -12,6 +12,7 @@
 
 [Arrays and Strings]: docs/arrays-and-strings.md
 [Linked Lists]: docs/linked-lists.md
+[Stacks and Queues]: docs/stacks-and-queues.md
 
 Collection of pure python algorithm implementations to solve computational problems.
 
@@ -24,6 +25,7 @@ The goal is for these implementations to be:
 ## List of problems
    - [Arrays and Strings]
    - [Linked Lists]
+   - [Stacks and Queues]
 
 **References**:
 - The book [Cracking the Coding Interview, 6th Edition].
