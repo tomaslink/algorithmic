@@ -56,7 +56,12 @@ class Stack:
         return " -> ".join([str(i) for i in items])
 
     def tolist(self):
-        """Converts stack to list."""
+        """Converts stack to list.
+
+        Complexity:
+            - Time: O(N).
+            - Space: O(N).
+        """
         node = self._top
         items = []
 
