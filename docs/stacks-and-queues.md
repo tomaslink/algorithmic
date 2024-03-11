@@ -3,6 +3,7 @@
 [Stack Min]: ../src/algorithmic/stacks.py#L70
 [Stack of Plates]: ../src/algorithmic/stacks.py#L187
 [Queue via Stacks]: ../src/algorithmic/queues.py#L5
+[Sort Stack]: ../src/algorithmic/stacks.py#L158
 
 
 1. **[Stack Min]**: How would you design a stack which, in addition to push and pop, has a function min
@@ -18,3 +19,8 @@ Implement also a function popAt(int index) which performs a pop operation on a s
 
 
 3. **[Queue via Stacks]**: Implement a Queue class which implements a queue using two stacks.
+
+
+4. **[Sort Stack]**: Write a program to sort a stack such that the smallest items are on the top. You can use
+an additional temporary stack, but you may not copy the elements into any other data structure
+(such as an array). The stack supports the following operations: push, pop, peek, and is Empty.

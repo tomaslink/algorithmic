@@ -35,12 +35,12 @@ class Stack:
     """
 
     def __init__(self, capacity=10) -> None:
-        self._top = None
+        self.top = None
         self._capacity = capacity
         self._current_capacity = 0
 
     def __len__(self) -> int:
-        node = self._top
+        node = self.top
         i = 0
 
         while node is not None:
@@ -50,21 +50,26 @@ class Stack:
         return i
 
     def __repr__(self):
-        items = list(reversed(self.tolist()))
+        items = self.tolist()
         items.append("None")
 
         return " -> ".join([str(i) for i in items])
 
     def tolist(self):
-        """Converts stack to list."""
-        node = self._top
+        """Converts stack to list.
+
+        Complexity:
+            - Time: O(N).
+            - Space: O(N).
+        """
+        node = self.top
         items = []
 
         while node is not None:
             items.append(node.data)
             node = node.next
 
-        return items
+        return list(reversed(items))
 
     def pop(self) -> Any:
         """Returns and removes the top of the stack.
@@ -76,8 +81,8 @@ class Stack:
         if self.is_empty():
             raise EmptyStackError("Stack is empty")
 
-        data = self._top.data
-        self._top = self._top.next
+        data = self.top.data
+        self.top = self.top.next
 
         self._current_capacity -= 1
 
@@ -93,7 +98,7 @@ class Stack:
         if self.is_empty():
             raise EmptyStackError()
 
-        return self._top.data
+        return self.top.data
 
     def push(self, data: Any) -> None:
         """Adds data to the top of the stack.
@@ -106,14 +111,14 @@ class Stack:
             raise FullStackError("This stack reached full capacity ({})".format(self._capacity))
 
         new_top = Node(data)
-        new_top.next = self._top
-        self._top = new_top
+        new_top.next = self.top
+        self.top = new_top
 
         self._current_capacity += 1
 
     def is_empty(self) -> bool:
         """Checks if the stack is empty."""
-        return self._top is None
+        return self.top is None
 
     def is_full(self) -> bool:
         """Checks if the stack is full."""
@@ -126,7 +131,7 @@ class Stack:
             - Time: O(N).
             - Space: O(1).
         """
-        bottom = self._top
+        bottom = self.top
         size = len(self)
 
         def _pop_bottom(i):
@@ -150,6 +155,24 @@ class Stack:
 
         return bottom
 
+    def sort(self):
+        """Sorts the stack in-place, with smallest elements on the top.
+
+        Complexity:
+            - Time: O(N^2).
+            - Space: O(N).
+        """
+        temp_stack = Stack()
+
+        while not self.is_empty():
+            data = self.pop()
+            while not temp_stack.is_empty() and temp_stack.peek() > data:
+                self.push(temp_stack.pop())
+
+            temp_stack.push(data)
+
+        self.top = temp_stack.top
+
 
 class StackMin(Stack):
     """Implements a Stack with a min method that returns the minimum."""
@@ -165,11 +188,11 @@ class StackMin(Stack):
         new_top.substack_min = data
 
         if not self.is_empty():
-            if self._top.substack_min < new_top.substack_min:
-                new_top.substack_min = self._top.substack_min
+            if self.top.substack_min < new_top.substack_min:
+                new_top.substack_min = self.top.substack_min
 
-        new_top.next = self._top
-        self._top = new_top
+        new_top.next = self.top
+        self.top = new_top
 
     def min(self) -> Any:
         """Returns the minimum of the stack.
@@ -181,7 +204,7 @@ class StackMin(Stack):
         if self.is_empty():
             raise EmptyStackError()
 
-        return self._top.substack_min
+        return self.top.substack_min
 
 
 class SetOfStacks(Stack):

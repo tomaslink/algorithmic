@@ -36,6 +36,26 @@ def test_stack():
     assert len(stack) == 2
 
 
+def test_stack_sort():
+    stack = stacks.Stack(capacity=10)
+
+    items = [7, 10, 44, 9, 3, 20]
+
+    for it in items:
+        stack.push(it)
+
+    assert len(stack) == 6
+
+    assert stack.peek() == 20
+    assert stack.tolist() == items
+
+    stack.sort()
+
+    sorted_items = list(reversed(sorted(items)))
+    for it in sorted_items:
+        assert stack.pop() == it
+
+
 def test_stack_min():
     stack = stacks.StackMin()
     stack.push(7)
